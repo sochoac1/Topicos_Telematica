@@ -110,7 +110,7 @@ Test the web server using a web browser (e.g., Google Chrome )
 
 ### Testing the web server
 
-* With a web browser index the folowwing url (http://34.207.26.5::80) to access to the web server.
+* With a web browser index the folowwing url (http://34.207.26.5) to access to the web server.
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
