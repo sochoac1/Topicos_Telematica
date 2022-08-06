@@ -1,2 +1,2 @@
 # Topicos-Tel-matica
-# Topicos-Telematica
+Labs are in "laboratorios" folder.
