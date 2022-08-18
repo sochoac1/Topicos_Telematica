@@ -1,5 +1,5 @@
 # ********************************************************************************************
-    # Lab: Introduction to sockets
+    # Lab 1: Introduction to sockets
     # Course: Topicos de Telemática
     # MultiThread TCP-SocketServer
 # ********************************************************************************************
