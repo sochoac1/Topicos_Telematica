@@ -19,7 +19,7 @@
 
 # 2. información general de diseño de alto nivel, arquitectura, patrones, mejores prácticas utilizadas.
 - **Docker** : Docker es un sistema operativo (o runtime) para contenedores. El motor de Docker se instala en cada servidor en el que desee ejecutar contenedores y proporciona un conjunto sencillo de comandos que puede utilizar para crear, iniciar o detener contenedores.
-- **Docker Compose** : Docker Compose es una herramienta para definir y ejecutar aplicaciones de Docker de varios contenedores. En Compose, se usa un archivo YAML para configurar los servicios de la aplicación. Después, con un solo comando, se crean y se inician todos los servicios de la configuración.
+- **Docker Compose** : Docker Compose es una herramienta para definir y ejecutar aplicaciones de Docker de varios contenedores. En Compose, se usa un archivo YAML para configurar los servicios de la aplicación. Después, con un solo comando, se crean y se inician todos los servicios de la configuración.  
 [![Product Name Screen Shot][docker]]((http://34.207.26.5))
 
 # 3. Descripción del ambiente de desarrollo y técnico: lenguaje de programación, librerias, paquetes, etc, con sus numeros de versiones.
@@ -37,19 +37,18 @@
 - db-server
 - nfs-server
 - wordpress-1
-- wordpress-2
-[![Product Name Screen Shot][maquinas]]((http://34.207.26.5))
-
-1. Crear máquina virtual en GCP. (Repetir los pasos a continuación para cada máquina, cambie solamente el nombre a asignar)
-[![Product Name Screen Shot][instancia]]((http://34.207.26.5))
-También se habilita los puertos para el tráfico.
-[![Product Name Screen Shot][firewall]]((http://34.207.26.5))
+- wordpress-2  
+[![Product Name Screen Shot][maquinas]]((http://34.207.26.5))  
+1. Crear máquina virtual en GCP. (Repetir los pasos a continuación para cada máquina, cambie solamente el nombre a asignar)  
+[![Product Name Screen Shot][instancia]]((http://34.207.26.5))  
+También se habilita los puertos para el tráfico.  
+[![Product Name Screen Shot][firewall]]((http://34.207.26.5))  
 
 2. Asignar dirección estática. Para ello vamos a Red de VPC- Direcciones IP - Direcciones IP externas - Reservar.  
-**Nota**: En vez de cambiar te dira reservar, dar click, asignar un nombre y finalmente crear. Recuerda seleccionar la dirección IP externa de la máquina recién creada.
-[![Product Name Screen Shot][estatica]]((http://34.207.26.5))
-Finalmente la máquina queda así:
-[![Product Name Screen Shot][lab3]]((http://34.207.26.5))
+**Nota**: En vez de cambiar te dira reservar, dar click, asignar un nombre y finalmente crear. Recuerda seleccionar la dirección IP externa de la máquina recién creada.  
+[![Product Name Screen Shot][estatica]]((http://34.207.26.5))  
+Finalmente la máquina queda así:  
+[![Product Name Screen Shot][lab3]]((http://34.207.26.5))  
 
 3. Generación de claves ssh:  
 Generar el par de claves
@@ -141,9 +140,9 @@ sudo letsencrypt certonly -a webroot --webroot-path=/var/www/letsencrypt -m soch
 ```
 sudo certbot --server https://acme-v02.api.letsencrypt.org/directory -d *.sochoac.tk --manual --preferred-challenges dns-01 certonly
 ```
-**Nota**: Este comando queda pausado indicando que debe crear un registro TXT en su dominio, una vez lo cree y verifique, dele ENTER para Continuar. Debe terminar con éxito. **Debemos en este punto crear el registro TXT**.
+**Nota**: Este comando queda pausado indicando que debe crear un registro TXT en su dominio, una vez lo cree y verifique, dele ENTER para Continuar. Debe terminar con éxito. **Debemos en este punto crear el registro TXT**.  
 
-[![Product Name Screen Shot][txt]]((http://34.207.26.5))
+[![Product Name Screen Shot][txt]]((http://34.207.26.5))  
 Con lo subrayado en verde basarse para crear el TXT, una vez creado dar ENTER. Recuerda que se debe crear en DNS GCP.  
 
 6. Cree los archivos de docker-compose.
@@ -239,17 +238,17 @@ sudo docker-compose up --build -d
 
 ### Paso a paso para la creación de NFS.
 1. Se instala nginx a ambos wordpress.
-[![Product Name Screen Shot][nginx2]]((http://34.207.26.5))
-2. Se instala el servidor nfs dentro de la máquina virtual nfs-server.
-[![Product Name Screen Shot][nfs]]((http://34.207.26.5))
-3. Se crea la carpeta a compartir y se asignan permisos.
-[![Product Name Screen Shot][permisos]]((http://34.207.26.5))
-4. Modificamos el archivo exports localizado en /etc/exports. (Se coloca la subred dentro de la cual se encuentran ambas máquinas virtuales que contienen la instancia del wordpress).
-[![Product Name Screen Shot][exports]]((http://34.207.26.5))
-5. Actualizamos exports y luego se configura el firewall.
-[![Product Name Screen Shot][firewallnfs]]((http://34.207.26.5))
-6. Configurar fstab dentro de /etc/fstab
-[![Product Name Screen Shot][fstab]]((http://34.207.26.5))
+[![Product Name Screen Shot][nginx2]]((http://34.207.26.5))  
+2. Se instala el servidor nfs dentro de la máquina virtual nfs-server.  
+[![Product Name Screen Shot][nfs]]((http://34.207.26.5))  
+3. Se crea la carpeta a compartir y se asignan permisos.  
+[![Product Name Screen Shot][permisos]]((http://34.207.26.5))  
+4. Modificamos el archivo exports localizado en /etc/exports. (Se coloca la subred dentro de la cual se encuentran ambas máquinas virtuales que contienen la instancia del wordpress).  
+[![Product Name Screen Shot][exports]]((http://34.207.26.5))  
+5. Actualizamos exports y luego se configura el firewall.  
+[![Product Name Screen Shot][firewallnfs]]((http://34.207.26.5))  
+6. Configurar fstab dentro de /etc/fstab  
+[![Product Name Screen Shot][fstab]]((http://34.207.26.5))  
 7. En cada wordpress cliente repetir los comandos a continuación.  
 - Instalar el nfs client: 
 ``` 
@@ -263,15 +262,15 @@ sudo mkdir -p /mnt/nfs_clientshare
 ``` 
 sudo mount 10.128.0.7:/mnt/nfs_share /mnt/nfs_clientshare
 ``` 
-- Finalmente, compruebe que todo este correcto:
-[![Product Name Screen Shot][nfs-server]]((http://34.207.26.5))
+- Finalmente, compruebe que todo este correcto:  
+[![Product Name Screen Shot][nfs-server]]((http://34.207.26.5))  
 
-### Paso a paso para la creación de la base de datos.
-1. Se deben habilitar los puertos a utilizar.
-[![Product Name Screen Shot][mysql]]((http://34.207.26.5))
+### Paso a paso para la creación de la base de datos.  
+1. Se deben habilitar los puertos a utilizar.  
+[![Product Name Screen Shot][mysql]]((http://34.207.26.5))  
 
-2. Crear una carpeta que contiene el contenedor mysql:
-[![Product Name Screen Shot][schemas]]((http://34.207.26.5))
+2. Crear una carpeta que contiene el contenedor mysql:  
+[![Product Name Screen Shot][schemas]]((http://34.207.26.5))  
 - Crear el archivo Dockerfile copiando solo lo siguiente:
 ``` 
 FROM mysql:8.0
@@ -315,8 +314,8 @@ sudo docker-compose up --build -d
 ``` 
 sudo docker exec -it dbserver mysql  -p
 ``` 
-5. Crear una base de datos y un usuario para que utilicen las instancias de wordpress.
-[![Product Name Screen Shot][db]]((http://34.207.26.5))
+5. Crear una base de datos y un usuario para que utilicen las instancias de wordpress.  
+[![Product Name Screen Shot][db]]((http://34.207.26.5))  
 
 ### Paso a paso para la creación de las instancias de wordpress utilizando docker y docker-compose. (Repita los pasos para cada máquina wordpress creada)
 1. Instalar docker y docker-compose.
@@ -337,8 +336,8 @@ netstat -an | grep 80
 sudo systemctl disable nginx
 sudo systemctl stop nginx
 ``` 
-3. Crear un carpeta wordpress que contendra el contenedor.
-[![Product Name Screen Shot][word]]((http://34.207.26.5))
+3. Crear un carpeta wordpress que contendra el contenedor.  
+[![Product Name Screen Shot][word]]((http://34.207.26.5))  
 - Crear un archivo docker-compose.yml y colocar lo siguiente:
 ``` 
 version: '3.7'
@@ -365,7 +364,7 @@ sudo docker-compose up --build -d
 ``` 
 
 ### Ingrese al sitio web. 
-5. Pruebe desde un browser: [https://lab4.sochoac.tk/](https://lab4.sochoac.tk/)
+5. Pruebe desde un browser: [https://lab4.sochoac.tk/](https://lab4.sochoac.tk/)  
 
 # 4. otra información que considere relevante para esta actividad.
 - **Nota**: En el github esta la clave privada para ingresar a la MV.
