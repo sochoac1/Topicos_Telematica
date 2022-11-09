@@ -75,6 +75,6 @@
 [copiarlocal]: Imagenes/9-copiararchivoshdfslocal.png
 [otraforma]: Imagenes/10-otraformadecopiar.png
 [comandosbasicos]: Imagenes/11-comandosbasicos.png
-[onu]: Imagenes/12-master.png
+[onu]: Imagenes/12-onu.png
 [visualizar]: Imagenes/13-visualizardatos.png
 [resto]: Imagenes/14-comandosfaltantes.png
