@@ -9,12 +9,10 @@
 
 ### 1.1. Que aspectos cumplió o desarrolló de la actividad propuesta por el profesor (requerimientos funcionales y no funcionales)
 - Creación de un clúster EMR donde se activa el servicio HUE.
-- Copiar archivos hacia el HDFS vía HUE.
-- Copiar archivos hacie el HDFS vía SSH.
-- Copiar archivos hacia AWS S3 vía HUW.
-- Copiar archivos hacia el AWS S3 vía SSH.
-
-
+- Utilizar HIVE y SparkSQL para la gestión de datos vía SQL.
+- Se utilizo pyspark para ejecutar el wordcount de forma interactiva con datos en HDFS y S3 respectivamente.
+- Ejecutar el wordcount en JupyterHub Notebooks EMR con datos en s3.
+- Replicar, ejecutar y entender el notebook: Data_processing_using_PySpark.ipynb con los datos respectivos.
 
 # 2. información general de diseño de alto nivel, arquitectura, patrones, mejores prácticas utilizadas.
 - **AWS BUCKET** :Un bucket es un contenedor de objetos. Para almacenar sus datos en Amazon S3, primero debe crear un depósito y especificar un nombre de depósito y una región de AWS. Luego, carga sus datos en ese depósito como objetos en Amazon S3. Cada objeto tiene una clave (o nombre de clave), que es el identificador único del objeto dentro del depósito.
@@ -152,7 +150,78 @@
     [![Product Name Screen Shot][csv]]()
 
 ## Parte 3
-### HIVE y SparkSQL, gestión de datos vía SQL
+## HIVE y SparkSQL, gestión de datos vía SQL
+### Gestión (DDL) y Consultas (DQL)
+1. Ir al apartado hive utilizando la interfaz de HUE.
+    [![Product Name Screen Shot][hue]]()
+2. Crear la tabla HDI en HDFS/beeline:
+    ```
+    # tabla externa en S3: 
+    use usernamedb;
+    CREATE EXTERNAL TABLE HDI (id INT, country STRING, hdi FLOAT, lifeex INT, mysch INT, eysch INT, gni INT) 
+    ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' 
+    STORED AS TEXTFILE 
+    LOCATION 's3://st0263datasets/onu/hdi/'
+    ```
+    [![Product Name Screen Shot][hive]]()
+3. Hacer consultas y cálculos sobre la tabla HDI:
+    - Consultar con gni menor a 200
+        ```
+        use usernamedb;
+        show tables;
+        describe hdi;
+
+        select * from hdi;
+
+        select country, gni from hdi where gni > 2000;
+        ```
+        [![Product Name Screen Shot][hive2]]()
+    - Ejecutar un JOIN con HIVE
+    1. Crear la tabla EXPO en base a: export-data.csv
+    ```
+    use usernamedb;
+    CREATE EXTERNAL TABLE EXPO (country STRING, expct FLOAT) 
+    ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' 
+    STORED AS TEXTFILE 
+    LOCATION 's3://notebooksochoac/datasets/onu/export/'
+    ```
+    [![Product Name Screen Shot][hive3]]()
+    2. Ejecutar JOIN con las tablas hdi y expo
+    ```
+    SELECT h.country, gni, expct FROM HDI h JOIN EXPO e ON (h.country = e.country) WHERE gni > 2000;
+
+    ```
+    [![Product Name Screen Shot][hive4]]()
+
+4. Wordcount en HIVE:
+    - Utilizando HDFS, creamos la tabla
+        ```
+        use usernamedb;
+        CREATE EXTERNAL TABLE docs (line STRING) 
+        STORED AS TEXTFILE 
+        LOCATION 'hdfs:///user/hadoop/datasets/gutenberg-small/';
+        ```
+        [![Product Name Screen Shot][hive5]]()
+    - Ordenado por palabra
+        ```
+        SELECT word, count(1) AS count FROM (SELECT explode(split(line,' ')) AS word FROM docs) w 
+        GROUP BY word 
+        ORDER BY word DESC LIMIT 10;
+        ```
+        [![Product Name Screen Shot][hive6]]()
+    - Ordenado por frecuencia de menor a mayor
+        ``` 
+        SELECT word, count(1) AS count FROM (SELECT explode(split(line,' ')) AS word FROM docs) w 
+        GROUP BY word 
+        ORDER BY count DESC LIMIT 10;
+        ```
+        [![Product Name Screen Shot][hive7]]()
+
+
+# 4. Referencias
+[Este es el link al repositorio de la materia donde me base para realizar el lab6.](https://github.com/st0263eafit/st0263-2022-2/tree/main/bigdata)
+
+    
 
 
 #### versión README.md -> 1.0 (2022-agosto)
@@ -193,5 +262,13 @@
 [pandas3]: Images/34-pandas3.png
 [pandas4]: Images/35-pandas4.png
 [csv]: Images/36-csv.png
+[hive]: Images/37-hive.png
+[hue]: Images/38-hue.png
+[hive2]: Images/39-hive2.png
+[hive3]: Images/40-hive3.png
+[hive4]: Images/41-hive4.png
+[hive5]: Images/42-hive5.png
+[hive6]: Images/43-hive6.png
+[hive7]: Images/44-hive7.png
 
 
