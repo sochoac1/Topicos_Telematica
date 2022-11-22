@@ -8,15 +8,11 @@
 # 1. Breve descripción de la actividad
 
 ### 1.1. Que aspectos cumplió o desarrolló de la actividad propuesta por el profesor (requerimientos funcionales y no funcionales)
-- Creación de un clúster EMR donde se activa el servicio HUE.
-- Utilizar HIVE y SparkSQL para la gestión de datos vía SQL.
-- Se utilizo pyspark para ejecutar el wordcount de forma interactiva con datos en HDFS y S3 respectivamente.
-- Ejecutar el wordcount en JupyterHub Notebooks EMR con datos en s3.
-- Replicar, ejecutar y entender el notebook: Data_processing_using_PySpark.ipynb con los datos respectivos.
 - Almacenar datos en AWS S3 y en google drive.
 - Cargar datos desde AWS S3 y desde google drive.
 - Analisis exploratorio del dataframe donde cargamos los datos.
 - Contestar diferentes preguntas sobre los datos de covid.
+- Salve los datos del numeral 3, en el bucket público de cada estudiante
 
 # 2. información general de diseño de alto nivel, arquitectura, patrones, mejores prácticas utilizadas.
 - **AWS BUCKET** :Un bucket es un contenedor de objetos. Para almacenar sus datos en Amazon S3, primero debe crear un depósito y especificar un nombre de depósito y una región de AWS. Luego, carga sus datos en ese depósito como objetos en Amazon S3. Cada objeto tiene una clave (o nombre de clave), que es el identificador único del objeto dentro del depósito.
@@ -26,7 +22,7 @@
 Antes de comenzar la explicación del proyecto 3 tener encuenta los siguientes archivos y links de s3:
 - [PySpark_drive](PySpark_drive.ipynb)
 - [PySpark_aws](Pyspark_aws.ipynb)
-- s3://notebooksochoacv
+- s3://notebooksochoac
 ## Almacenar datos en AWS S3 y en google drive. (Casos_positivos_de_COVID-19_en_Colombia.csv)
 1. Datos en AWS S3.
     [![Product Name Screen Shot][s3]]()
