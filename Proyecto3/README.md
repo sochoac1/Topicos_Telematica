@@ -31,6 +31,7 @@
 
 ## Análisis exploratorio del dataframe donde cargamos los datos:
 ### Para S3 con AWS
+**Nota**: Los comandos estan en el siguiente documento en 
 0. Ponemos las credenciales de la sesión de AWS.
     [![Product Name Screen Shot][aws]]()
 1. Cargamos los datos en google colab desde S3.
@@ -74,8 +75,31 @@
 ## Contestar las siguientes preguntas
 ### 3.1 Los 10 departamentos con más casos de covid en Colombia ordenados de mayor a menor.
 1. Como un dataframe.
+    [![Product Name Screen Shot][preg]]()
+2. Como un SparkSQL.
+    [![Product Name Screen Shot][preg6]]()
+### 3.2 Las 10 ciudades con más casos de covid en Colombia ordenados de mayor a menor.
+1. Como un dataframe.
+    [![Product Name Screen Shot][preg2]]()
+2. Como un SparkSQL.
+    [![Product Name Screen Shot][preg7]]()
 
+### 3.3 Los 10 días con más casos de covid en Colombia ordenados de mayor a menor.
+1. Como un dataframe.
+    [![Product Name Screen Shot][preg3]]()
+2. Como un SparkSQL.
+    [![Product Name Screen Shot][preg8]]()
 
+### 3.4 Distribución de casos por edades de covid en Colombia.
+1. Como dataframe.
+    [![Product Name Screen Shot][preg4]]()
+2. Como un SparkSQL.
+    [![Product Name Screen Shot][preg9]]()
+### 3.5 Realice la pregunda de negocio que quiera sobre los datos y respondala con la correspondiente programación en spark.
+1. Como un dataframe.
+    [![Product Name Screen Shot][preg5]]()
+2. Como un SparkSQL.
+    [![Product Name Screen Shot][preg10]]()
 
 # 4. Referencias
 [Este es el link al repositorio de la materia donde me base para realizar el lab6.](https://github.com/st0263eafit/st0263-2022-2/tree/main/bigdata)
@@ -87,6 +111,17 @@
 
 [s3]: Images/1-S3.png
 [drive]: Images/2-drive.png
+[preg]: Images/3-preg1.png
+[preg2]: Images/4-preg2.png
+[preg3]: Images/6-preg4.png
+[preg4]: Images/5-preg3.png
+[preg5]: Images/7-preg5.png
+[preg6]: Images/8-preg6.png
+[preg7]: Images/9-preg7.png
+[preg8]: Images/10-preg8.png
+[preg9]: Images/11-preg9.png
+[preg10]: Images/12-preg10.png
+
 
 [colab]: colab/1-colab.png
 [colab2]: colab/2-colab2.png
