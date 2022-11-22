@@ -22,7 +22,11 @@
 - **AWS BUCKET** :Un bucket es un contenedor de objetos. Para almacenar sus datos en Amazon S3, primero debe crear un depósito y especificar un nombre de depósito y una región de AWS. Luego, carga sus datos en ese depósito como objetos en Amazon S3. Cada objeto tiene una clave (o nombre de clave), que es el identificador único del objeto dentro del depósito.
 
 # 3. Descripción del ambiente de desarrollo y técnico: lenguaje de programación, librerias, paquetes, etc, con sus numeros de versiones.
-
+## Importante
+Antes de comenzar la explicación del proyecto 3 tener encuenta los siguientes archivos y links de s3:
+- [PySpark_drive](PySpark_drive.ipynb)
+- [PySpark_aws](Pyspark_aws.ipynb)
+- s3://notebooksochoacv
 ## Almacenar datos en AWS S3 y en google drive. (Casos_positivos_de_COVID-19_en_Colombia.csv)
 1. Datos en AWS S3.
     [![Product Name Screen Shot][s3]]()
@@ -31,7 +35,7 @@
 
 ## Análisis exploratorio del dataframe donde cargamos los datos:
 ### Para S3 con AWS
-**Nota**: Los comandos estan en el siguiente documento en 
+
 0. Ponemos las credenciales de la sesión de AWS.
     [![Product Name Screen Shot][aws]]()
 1. Cargamos los datos en google colab desde S3.
@@ -100,6 +104,9 @@
     [![Product Name Screen Shot][preg5]]()
 2. Como un SparkSQL.
     [![Product Name Screen Shot][preg10]]()
+## Salve los datos del numeral 3, en el bucket público de cada estudiante
+1. Corremos los siguientes comandos.
+    [![Product Name Screen Shot][preg11]]()
 
 # 4. Referencias
 [Este es el link al repositorio de la materia donde me base para realizar el lab6.](https://github.com/st0263eafit/st0263-2022-2/tree/main/bigdata)
@@ -121,6 +128,7 @@
 [preg8]: Images/10-preg8.png
 [preg9]: Images/11-preg9.png
 [preg10]: Images/12-preg10.png
+[preg11]: Images/13-preg11.png
 
 
 [colab]: colab/1-colab.png
